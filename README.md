@@ -8,3 +8,18 @@
 (A) ```mkdir ''$'\n'``` ~> this will create a directory with ```enter sign``` as name and won't be visible in folder GUI view
 
 (B) ```mkdir -- "-okgoolge"```
+
+### 3. How to write something "Piyush Agarwal" in a directory
+Note -> directory is a kind of file that is used to map different inode no (files)
+we can not write something as a text in a directory as it is designed to store other files
+but we can add some extra file or directory information just like ACL permissions
+the above task can be done using setfattr command which is to declare new attribute or information within meta data of file
+run command
+mkdir task
+setfattr -n user.text -v "Piyush Agarwal" task
+to check the value , run command
+getfattr -n user.text hello
+
+output :
+#### file: hello
+user.text="Piyush Agarwal"
