@@ -42,4 +42,5 @@ mkdir -p A/{B/{G/K/N/Reboot.txt,H/J/N/Reboot.txt},C/{I/J/N/Reboot.txt,J/L/N/Rebo
   <li>from jack user also create two directories name jack1 & jack2 </li>
   <li>now login from Jill user and create a file. Jill.txt using vim editor and write "hey jiil"</li>
   <li>from Jill also create two directoires named jill1 & jill2 </li>
+ <li>Important :  swap these files and directories in between users  and to swap don't use root account</li>
   </ul>
