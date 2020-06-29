@@ -20,6 +20,26 @@ setfattr -n user.text -v "Piyush Agarwal" task
 to check the value , run command
 getfattr -n user.text hello
 
-output :
-#### file: hello
+#### output :
+ file: hello
 user.text="Piyush Agarwal"
+
+
+### 4. create a directory structure 
+<img src="struc.png" />
+
+```sh
+mkdir -p A/{B/{G/K/N/Reboot.txt,H/J/N/Reboot.txt},C/{I/J/N/Reboot.txt,J/L/N/Reboot.txt},D/{F/L/N/Reboot.txt,E/M/N/Reboot.txt}}
+```
+#### Output :
+<img src="Tree.png" />
+
+### 5 share and files and folder 
+<ul>
+  <li>create two users name jack and Jill  from command line</li>
+  <li>create all the data under home directory of each users </li>
+<li>login with jack user and create a file name  jack.txt using vim editor and write "hello jack"</li>
+  <li>from jack user also create two directories name jack1 & jack2 </li>
+  <li>now login from Jill user and create a file. Jill.txt using vim editor and write "hey jiil"</li>
+  <li>from Jill also create two directoires named jill1 & jill2 </li>
+  </ul>
