@@ -34,15 +34,45 @@ mkdir -p A/{B/{G/K/N/Reboot.txt,H/J/N/Reboot.txt},C/{I/J/N/Reboot.txt,J/L/N/Rebo
 <img src="Tree.png" />
 
 ### 5 share and files and folder 
-<ul>
-  <li>create two users name jack and Jill  from command line</li>
-  <li>create all the data under home directory of each users </li>
-<li>login with jack user and create a file name  jack.txt using vim editor and write "hello jack"</li>
-  <li>from jack user also create two directories name jack1 & jack2 </li>
-  <li>now login from Jill user and create a file. Jill.txt using vim editor and write "hey jiil"</li>
-  <li>from Jill also create two directoires named jill1 & jill2 </li>
- <li>Important :  swap these files and directories in between users  and to swap don't use root account</li>
-  </ul>
+1. create two users name jack and Jill  from command line
+```sh
+adduser jack jill
+passwd jack   # set as jack
+passwd jill   # set as jill
+```
+2. Create all the data under home directory of each users
+3. login with jack user and create a file name  jack.txt using vim editor and write "hello jack"
+```sh
+su jack  # passwd is jack
+chmod 0777 /home/jack
+vim jack.txt  # enter hello jack and use :wq to exit
+```
+4.from jack user also create two directories name jack1 & jack2
+```sh
+mkdir jack{1..2}
+```
+5. Now login from Jill user and create a file. Jill.txt using vim editor and write "hey jiil"
+```sh
+su jill  # passwd is jill
+chmod 0777 /home/jill
+vim jill.txt  # enter hey jill and save using :wq
+```
+6. from Jill also create two directoires named jill1 & jill2
+```sh
+mkdir jill{1..2}
+```
+7. Important :  swap these files and directories in between users  and to swap don't use root account
+```sh
+cp -r /home/jack/* .
+su jack # passwd is jack
+cd  # switch to home directory of jack
+cp -r /home/jill/* .
+rm -r jack.txt jack{1..2}
+cd /home/jill
+rm -r jill.txt jill{1..2}
+```
+* Since i gave global permission to home directories of both the user, anyone was able to enter or do anything with the files and thus no root permissions were required, after work for security we should set the permissions back to default using chmod 0455 /home/jack and same for jill
+
 
 ### 6. Delete a particular entry from History without leaving any trace of it being deleted
 ```sh
