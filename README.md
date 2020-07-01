@@ -43,3 +43,13 @@ mkdir -p A/{B/{G/K/N/Reboot.txt,H/J/N/Reboot.txt},C/{I/J/N/Reboot.txt,J/L/N/Rebo
   <li>from Jill also create two directoires named jill1 & jill2 </li>
  <li>Important :  swap these files and directories in between users  and to swap don't use root account</li>
   </ul>
+
+### 6. Delete a particular entry from History without leaving any trace of it being deleted
+```sh
+history -d $((HISTCMD -1)) && history -d [no of command from history to be deleted]
+```
+Using the above command we can even execute an command without being traced from history as
+```sh
+history -d ((HISTCMD -1)) && [type your command]
+```
+* So basically ```HISTCMD``` stores the value of total lines in history file + 1  and thus we are just removing the latest entry before executing any other command
