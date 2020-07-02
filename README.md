@@ -83,3 +83,21 @@ Using the above command we can even execute an command without being traced from
 history -d ((HISTCMD -1)) && [type your command]
 ```
 * So basically ```HISTCMD``` stores the value of total lines in history file + 1  and thus we are just removing the latest entry before executing any other command
+
+### 7. play with files and directories 
+1. create  4 files named   abc.txt  ok  fine  g.txt  /tmp directory 
+```sh
+touch /tmp/{abc.txt,ok,fine,g.txt}
+```
+2. create  3  directories   aa aaa aaaa  under  /tmp directory 
+```sh
+mkdir /tmp/{aa,aaa,aaaa}
+```
+3. give ls command to  list the content of  /tmp directory , Condition:only list the content (file|directory)  having 2 char in their name.
+```sh
+ls --ignore='???*'
+```
+Output:
+<img src="ls.png" />
+
+### 8. run command without any output : open terminal and type any command ~> once you press enter your output of given command must not  print ~> you are not allowed to redirect output anywhere 
