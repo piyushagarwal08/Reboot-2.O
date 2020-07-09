@@ -101,3 +101,65 @@ Output:
 <img src="ls.png" />
 
 ### 8. run command without any output : open terminal and type any command ~> once you press enter your output of given command must not  print ~> you are not allowed to redirect output anywhere 
+
+
+### 9.  create a shell script
+<ul>
+  <li>create a shell script named /root/delvex.sh</li>
+  <li>make sure it will run /bin/sh shell </li>
+  <li>a user will be running this script my using a command name opensource</li>
+  <li>when a user  run like  "opensource  time" it must give current time only</li>
+  <li>when it runs like "opensource user"  it will give list of interactive shell users only</li>
+ <li>when run like "opensource 100"  it must print "Hello Delvex" 100 times in interval of 1 sec</li>
+  <li>if runs like  "opensource windows"  then it must shutdown </li>
+  <li>if run opensource command without any parameter  then it must show out --</li>
+  <ul>
+    <li>name of kernel</li>
+    <li>version of kernel</li>
+    <li>current date in the format of  /DD/MM/YY</li>
+    <li>name of OS</li>
+    <li>last reboot time</li>
+  </ul>
+  </ul>
+    
+```sh
+#!/bin/sh
+
+# We will read single argument
+if [ "$#" == 0 ]
+then
+	echo "Kernel Name: `uname`"
+	echo "Kernel Version: `uname -r`"
+	echo "Date: `date +%d`/`date +%m`/`date +%y`"
+	echo "OS `cat /etc/os-release | head -1`"
+	echo "last reboot info: "
+	last reboot | head -2 | awk '{print "   " $5" "$6" "$7" "$8" "$9" "$10}'
+elif [ "$1" == "time" ]
+then
+	date +%T
+elif [ "$1" == "user" ]
+then
+ 	users
+elif [[ "$1" =~ ^[0-9]+$ ]]
+then
+	count=$1
+	while [ $count != 0 ]
+	do
+		echo "Hello Delvex"
+		sleep 1
+		((count--))
+	done
+elif [[ "$1" == "windows" ]]
+then
+	shutdown now
+fi
+```
+
+### 9. create a user will default settings
+<ul>
+  <li>create a user name  delvex  and password of this user will be fedora</li>
+  <li>when user got created below listed things will come by default</li>
+  <li>history size will be 5000</li>
+  <li>history file will be  /home/delvex/myhist.txt</li>
+  <li>default shell will be  /bin/sh </li>
+  </ul>
