@@ -163,3 +163,19 @@ fi
   <li>history file will be  /home/delvex/myhist.txt</li>
   <li>default shell will be  /bin/sh </li>
   </ul>
+* For customization required as in question, we will create an shell script to be executed for our user
+
+```sh
+su root # switch to root user
+cat <<M /etc/profile.d/delvex.sh
+if [ $USER == "delvex" ]
+then
+	HISTSIZE=5000
+	HISTFILE=/home/delevx/myhist.txt
+	SHELL=/bin/sh
+	export HISTSIZE HISTFILE SHELL
+fi
+M
+adduser delvex
+passwd delvex # set it as fedora
+```
