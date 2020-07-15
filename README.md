@@ -257,3 +257,14 @@ else
 	done
 fi
 ```
+
+### 11. Do Something to hide the input / output of any command over terminal
+* To do this task we need to re-configure the bash behaviour and for that we use ```stty``` command
+* By Default, what ever we type through our input device that is ```keyboard``` all the characters are ```echoed``` over our display screen
+* So to hide this, we have to ```turn off this echo feature``` and for that we run command ```stty -echo```
+<img src="no_input.png" />
+
+* But the output is still visible, so the easiest way to remove this output from screen is to send it somewhere else
+* To do so, we need to append ```exec > /dev/null``` in the .bashrc file which sends the output of all the commands or basically their signals to ```Void```
+* And to re-enable it we will need to use ```root``` user to disable the ```exec > /dev/null``` line from .bashrc
+<img src="input_output.png" />
