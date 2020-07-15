@@ -9,7 +9,7 @@ then
 		if [ $number = 0 ] || [ $number = 1 ]
 		then
 			echo " "
-			exit
+			continue
 		fi
 
 		x=`expr $number % 2`
@@ -37,34 +37,38 @@ then
 		echo ""
 	done
 else
-	number=$1
-	if [ $number = 0 ] || [ $number = 1 ]
-	then
-		echo " "
-		exit
-	fi
-
-	x=`expr $number % 2`
-
-	while [ $x  == 0 ]
+	for i in $@
 	do
-		echo -n "2 "
-	number=$(echo "scale=0; $number/2" | bc -l )	
-	x=$(echo "scale=0; $number%2" | bc -l )
-	done
+		number=$i
+		echo -n "$number: "
+		if [ $number = 0 ] || [ $number = 1 ]
+		then
+			echo " "
+			continue
+		fi
 
-	max=$(echo "scale=0; sqrt($number)" | bc -l )
-	for ((i=3;i<=$max;i+=2))
-	do
-		while [ `expr $number % $i` == 0 ]
+		x=`expr $number % 2`
+
+		while [ $x  == 0 ]
 		do
-			echo -n "$i "
-			number=$(echo "scale=0; $number/$i" | bc -l )
+			echo -n "2 "
+		number=$(echo "scale=0; $number/2" | bc -l )	
+		x=$(echo "scale=0; $number%2" | bc -l )
 		done
+
+		max=$(echo "scale=0; sqrt($number)" | bc -l )
+		for ((i=3;i<=$max;i+=2))
+		do
+			while [ `expr $number % $i` == 0 ]
+			do
+				echo -n "$i "
+				number=$(echo "scale=0; $number/$i" | bc -l )
+			done
+		done
+		if [ $number -gt 2 ]
+		then
+			echo  $number
+		fi
 	done
-	if [ $number -gt 2 ]
-	then
-		echo  $number
-	fi
 fi
 
