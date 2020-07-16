@@ -101,7 +101,7 @@ Output:
 <img src="ls.png" />
 
 ### 8. run command without any output : open terminal and type any command ~> once you press enter your output of given command must not  print ~> you are not allowed to redirect output anywhere 
-
+* Possible answer is to run ```exec > tmp``` as this will change terminal settings in a way that ```stdout``` redirects the output to a file tmp instead of terminal screen
 
 ### 9.  create a shell script
 <ul>
@@ -265,6 +265,6 @@ fi
 <img src="no_input.png" />
 
 * But the output is still visible, so the easiest way to remove this output from screen is to send it somewhere else
-* To do so, we need to append ```exec > /dev/null``` in the .bashrc file which sends the output of all the commands or basically their signals to ```Void```
-* And to re-enable it we will need to use ```root``` user to disable the ```exec > /dev/null``` line from .bashrc
+* To do so, we need run command ```exec > tmp``` in the terminal which sends the output of all the commands or basically their signals to ```tmp file```
+* And to re-enable it just run ```exit```
 <img src="input_output.png" />
