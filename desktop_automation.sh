@@ -77,7 +77,7 @@ moving_window()
 	nautilus /tmp/car1 &
 	sleep 2
 	car=`xdotool search --name car`
-	xdotool windowsize $car 30% 30%
+	xdotool windowsize --sync $car 30% 30%
 	# l ~> r
 	for((i=10;i<1000;i+=5))
 	do
@@ -103,12 +103,33 @@ moving_window()
 	xdotool windowkill $car
 }
 
+if [ $# == "0" ]
+then
+	echo "will be running for minimum 1 minute by default"
+	runtime="1 minute"
+else
+	runtime=$1
+fi
+
+if [ $1 == "--help" ]
+then
+	echo "desktop_automation 5 minute (minimum minutes to run for)"
+	exit
+fi
+
+
+
 echo "starting automation script"
-open_firefox https://www.google.com https://www.facebook.com
-sleep 3
-gedit_type_text
-sleep 2
-moving_window
-sleep 1
-open_firefox https://www.linkedin.com https://www.google.com
+endtime=$(date -ud "$runtime" +%s)
+while [[ $(date -u +%s) -le $endtime ]]
+do
+	open_firefox https://www.google.com https://www.facebook.com
+	sleep 3
+	gedit_type_text
+	sleep 2
+	moving_window
+	sleep 1
+	open_firefox https://www.linkedin.com https://www.google.com
+	sleep 2
+done
 echo "Hope I would have been of your help"
